@@ -1,9 +1,14 @@
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+
+import Leads from "./pages/leads/Leads";
 
 function App() {
   return (
-    <div className="App">
-      oi galera
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/leads" element={<Leads />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
