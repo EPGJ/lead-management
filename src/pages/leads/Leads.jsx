@@ -1,9 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Container, Grid, Typography } from '@mui/material';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import { LeadStatusColumn } from '../../components/leadStatusColumn/LeadStatusColumn';
 
 function Leads() {
+  const navigate = useNavigate();
+
+  const addLead = () => {
+    navigate("/addLead");
+  }
+
   return (
     <Container maxWidth='lg'>
 
@@ -12,7 +20,7 @@ function Leads() {
         </Grid>
 
         <Grid>
-          <Button variant="contained" >
+          <Button variant='contained' onClick={addLead}>
             Novo Lead (+)
           </Button>
         </Grid>
