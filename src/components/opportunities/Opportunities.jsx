@@ -1,35 +1,39 @@
 import { useState, useEffect } from 'react';
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Grid,
-} from '@mui/material';
+import { Checkbox, FormControlLabel, FormControl, FormLabel, FormGroup, Grid } from '@mui/material';
 import { HelperText } from './style';
-// import initialData from '../../utils/constants';
 
 const Opportunites = (
   {
-    // // errors,
-    // values,
-    // // touched,
-    // setFieldTouched,
+    errors,
+    values,
+    touched,
+    setFieldTouched,
   }
 ) => {
-  // const [checked, setChecked] = useState(initialData.opportunities);
+  
+  const defaultOpportunities = {
+    rpa: false,
+    digitalProduct: false,
+    analytics: false,
+    bpm: false,
+  };
 
-  // useEffect(() => {
-  //   if (checked !== initialData.opportunities) {
-  //     values.all = !Object.values(checked).includes(false);
-  //     values.rpa = checked.rpa;
-  //     values.digitalProduct = checked.digitalProduct;
-  //     values.analytics = checked.analytics;
-  //     values.bpm = checked.bpm;
-  //     setFieldTouched('opportunities', true);
-  //   }
-  // }, [checked, values, setFieldTouched]);
+  const [checked, setChecked] = useState(defaultOpportunities); 
+  
+  useEffect(() => {
+
+    if (checked !== defaultOpportunities) {
+
+        values.all = !Object.values(checked).includes(false);
+        values.rpa = checked.rpa;
+        values.digitalProduct = checked.digitalProduct;
+        values.analytics = checked.analytics;
+        values.bpm = checked.bpm;
+        setFieldTouched('opportunities', true);
+
+    }
+
+  }, [checked, values, setFieldTouched]);
 
   // const handleChange = (e) => {
   //   if (e.target.name === 'all') {
