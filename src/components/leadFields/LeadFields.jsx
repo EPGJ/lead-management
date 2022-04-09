@@ -6,9 +6,9 @@ import phoneMask from '../../utils/phoneMask';
 
 function LeadFields({setFieldValue}) {
 
-    // const handlePhoneFormat = (event) => {
-    //     setFieldValue('phone', phoneMask(event.target.value))
-    // }
+    const handlePhoneFormat = (event) => {
+        setFieldValue('phone', phoneMask(event.target.value))
+    }
 
     return (
         <>
@@ -30,7 +30,7 @@ function LeadFields({setFieldValue}) {
                     name="phone"
                     type="text"
                     id="phone"
-                    // onChange={handlePhoneFormat}
+                    onChange={handlePhoneFormat}
                     fullWidth
                     required
                 />

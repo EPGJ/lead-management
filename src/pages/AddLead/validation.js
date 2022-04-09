@@ -1,6 +1,5 @@
-import checkRequired from "../../utils/checkRequired";
-
-const validate = (values) => {
+import checkRequired from '../../utils/checkRequired';
+const dataValidation = (values) => {
     const errors = {};
     const requiredFields = ['name', 'phone', 'email'];
 
@@ -21,4 +20,4 @@ const validate = (values) => {
     return errors;
 };
 
-export default validate;
+export default dataValidation;

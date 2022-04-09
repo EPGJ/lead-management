@@ -1,60 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Checkbox, FormControlLabel, FormControl, FormLabel, FormGroup, Grid } from '@mui/material';
+import { FormControl, Checkbox, FormGroup, FormControlLabel, Grid, FormLabel } from '@mui/material';
+
 import { HelperText } from './style';
+import initialData from '../../utils/initialData';
+import { useOpportunities } from '../../hooks/useOpportunities';
 
-const Opportunites = (
-  {
-    errors,
-    values,
-    touched,
-    setFieldTouched,
-  }
-) => {
-  
-  const defaultOpportunities = {
-    rpa: false,
-    digitalProduct: false,
-    analytics: false,
-    bpm: false,
-  };
+const Opportunites = ({ errors, values, touched, setFieldTouched }) => {
 
-  const [checked, setChecked] = useState(defaultOpportunities); 
-  
-  useEffect(() => {
-
-    if (checked !== defaultOpportunities) {
-
-        values.all = !Object.values(checked).includes(false);
-        values.rpa = checked.rpa;
-        values.digitalProduct = checked.digitalProduct;
-        values.analytics = checked.analytics;
-        values.bpm = checked.bpm;
-        setFieldTouched('opportunities', true);
-
-    }
-
-  }, [checked, values, setFieldTouched]);
-
-  // const handleChange = (e) => {
-  //   if (e.target.name === 'all') {
-  //     setChecked({
-  //       rpa: e.target.checked,
-  //       digitalProduct: e.target.checked,
-  //       analytics: e.target.checked,
-  //       bpm: e.target.checked,
-  //     });
-  //   } else {
-  //     setChecked({
-  //       ...checked,
-  //       [e.target.name]: e.target.checked,
-  //     });
-  //   }
-  // };
+  const [checked, setChecked, handleChange] = useOpportunities(initialData.opportunities, values, setFieldTouched);
 
   const hasError = () => {
-    // const error1 = !!errors.opportunities && touched.opportunities;
-    // const error2 = Object.keys(errors).length === 1 && errors.opportunities;
-    // if (error1 || error2) return true;
+    const error1 = !!errors.opportunities && touched.opportunities;
+    const error2 = Object.keys(errors).length === 1 && errors.opportunities;
+    if (error1 || error2) return true;
 
     return false;
   };
@@ -78,8 +35,8 @@ const Opportunites = (
             label="Todos"
             control={
               <Checkbox
-                // checked={!Object.values(checked).includes(false)}
-                // onChange={handleChange}
+                checked={!Object.values(checked).includes(false)}
+                onChange={handleChange}
                 name="all"
               />
             }
@@ -88,8 +45,8 @@ const Opportunites = (
             label="RPA"
             control={
               <Checkbox
-                // checked={checked.rpa}
-                // onChange={handleChange}
+                checked={checked.rpa}
+                onChange={handleChange}
                 name="rpa"
               />
             }
@@ -98,8 +55,8 @@ const Opportunites = (
             label="Produto Digital"
             control={
               <Checkbox
-                // checked={checked.digitalProduct}
-                // onChange={handleChange}
+                checked={checked.digitalProduct}
+                onChange={handleChange}
                 name="digitalProduct"
               />
             }
@@ -108,8 +65,8 @@ const Opportunites = (
             label="Analytics"
             control={
               <Checkbox
-                // checked={checked.analytics}
-                // onChange={handleChange}
+                checked={checked.analytics}
+                onChange={handleChange}
                 name="analytics"
               />
             }
@@ -118,8 +75,8 @@ const Opportunites = (
             label="BPM"
             control={
               <Checkbox
-                // checked={checked.bpm}
-                // onChange={handleChange}
+                checked={checked.bpm}
+                onChange={handleChange}
                 name="bpm"
               />
             }
