@@ -13,8 +13,8 @@ function App() {
       <CssBaseline />
       <Nav />
       <Routes>
-        <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SingUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SingUp />} />
         <Route path="/leads" element={<Leads />} />
         <Route path="/addLead" element={<AddLead />} />
       </Routes>
