@@ -1,9 +1,9 @@
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Grid, Typography , Box} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
 import { LeadStatusColumn } from '../../components/leadStatusColumn/LeadStatusColumn';
-import initialData from '../../utils/initialData'; 
+import initialData from '../../utils/initialData';
 
 const Leads = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Leads = () => {
       const haveNewLead =
         segmentedLeads[0] &&
         segmentedLeads[0].length >
-        newColumns[initialData.columnOrder[0]].leadsIds.length;
+          newColumns[initialData.columnOrder[0]].leadsIds.length;
 
       if (newColumns === initialData.columns || haveNewLead) {
         let i = 0;
@@ -106,12 +106,13 @@ const Leads = () => {
       const newColumn = {
         ...start,
         leadsIds: newLeadsIds,
-      };
+      }; 
 
       handleUpdateColumns({ [newColumn.id]: newColumn });
       return;
     }
 
+    // Moving from one list to another
     const startLeadIds = [...start.leadsIds];
     startLeadIds.splice(source.index, 1);
     const newStart = {
@@ -132,40 +133,50 @@ const Leads = () => {
 
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant="h4">Leads</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" onClick={() => navigate('/addLead')}>
-            Novo Lead
-          </Button>
-        </Grid>
-        {!loading && (
-          <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-            <Grid container spacing={2} item xs={12}>
-              {initialData.columnOrder.map((columnId, index) => {
-                const column = columns[columnId];
-                const auxLeads = column.leadsIds.map(
-                  (leadId) => leads.filter((lead) => lead.id === +leadId)[0]
-                );
+        <Box
+                sx={{
+                marginTop: 8,
+                marginBottom: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                }}
+            >
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                <Typography variant="h4">Leads</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                <Button variant="contained" onClick={() => navigate('/addLead')}>
+                    Novo Lead (+)
+                </Button>
+                </Grid>
+                {!loading && (
+                <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+                    <Grid container spacing={2} item xs={12}>
+                    {initialData.columnOrder.map((columnId, index) => {
+                        const column = columns[columnId];
+                        const auxLeads = column.leadsIds.map(
+                        (leadId) => leads.filter((lead) => lead.id === +leadId)[0]
+                        );
 
-                const isDropDisabled =
-                  homeIndex > index || index > homeIndex + 1;
+                        const isDropDisabled =
+                        homeIndex > index || index > homeIndex + 1;
 
-                return (
-                  <LeadStatusColumn
-                    key={column.id}
-                    column={column}
-                    leads={auxLeads}
-                    isDropDisabled={isDropDisabled}
-                  />
-                );
-              })}
+                        return (
+                        <LeadStatusColumn
+                            key={column.id}
+                            column={column}
+                            leads={auxLeads}
+                            isDropDisabled={isDropDisabled}
+                        />
+                        );
+                    })}
+                    </Grid>
+                </DragDropContext>
+                )}
             </Grid>
-          </DragDropContext>
-        )}
-      </Grid>
+      </Box>
     </Container>
   );
 };

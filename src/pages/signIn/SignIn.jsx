@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Button,
-  CssBaseline,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
@@ -47,7 +44,6 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,

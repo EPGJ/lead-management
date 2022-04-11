@@ -6,7 +6,6 @@ import { TextField } from 'formik-mui';
 import {
   Avatar,
   Button,
-  CssBaseline,
   Link,
   LinearProgress,
   Grid,
@@ -48,12 +47,10 @@ export default function SignUp() {
     }, 500);
   };
 
- 
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
