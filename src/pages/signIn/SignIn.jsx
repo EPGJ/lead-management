@@ -1,45 +1,47 @@
 import { useNavigate } from 'react-router-dom';
 
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  createTheme,
+  ThemeProvider,
+  LinearProgress,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Formik, Form, Field } from 'formik';
+import { TextField } from 'formik-mui';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+import validateLoginForm from './validation';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function SignIn() {
 
   const navigate = useNavigate();
+  const [user, signIn, signOut] = useAuth();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const theme = createTheme();
+
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+      setSubmitting(false);
+      try {
+        console.log(values);
+        signIn(values.username, values.password);
+        navigate('/leads');
+        alert('Login Successful');
+      } catch (error) {
+        alert('erro');
+      }
+    }, 500);
   };
 
   return (
@@ -54,60 +56,83 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2" nClick={navigate('/signUp')}>
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          <Formik
+            initialValues={{
+              username: '',
+              password: '',
+            }}
+            validate={validateLoginForm}
+            onSubmit={(values, { setSubmitting }) =>
+              handleSubmit(values, { setSubmitting })
+            }
+          >
+            {({ submitForm, isSubmitting }) => (
+              <Form>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={2}
+                  item
+                  xs={12}
+                >
+                  <Grid item xs={12}>
+                    <label htmlFor='name'>Usuário *</label>
+                    <Field
+                      component={TextField}
+                      name="username"
+                      type="text"
+                      id="username"
+                      label=""
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <label htmlFor='password'>Password *</label>
+                    <Field
+                      component={TextField}
+                      type="password"
+                      name="password"
+                      id="password"
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+
+                  {isSubmitting && <LinearProgress />}
+                  <Grid item xs={12}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                      fullWidth
+                      disabled={isSubmitting}
+                      onClick={submitForm}
+                    >
+                      Entrar
+                    </Button>
+                    <Grid container>
+                      <Grid item>
+                        <Link href="#" variant="body2" onClick={() => navigate('/signUp')}>
+                          {"Não tem conta? Cadastre-se"}
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Form>
+            )}
+          </Formik>
+
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

@@ -1,15 +1,15 @@
 import checkRequired from '../../utils/checkRequired';
 import passwordValidation from '../../utils/passwordValidation';
 
-export const validationFormRegister = (values) => {
+
+export const validateLoginForm = (values) => {
     const errors = {};
-    const requiredFields = ['username', 'password', 'passwordConfirm'];
-    
+    const requiredFields = ['username', 'password'];
+  
     checkRequired(values, errors, requiredFields);
     passwordValidation(values, errors);
-
-    if (values.password !== values.passwordConfirm)
-        errors.passwordConfirm = 'Passwords devem ser iguais';
-
+  
     return errors;
-};
+  };
+  
+  export default validateLoginForm;

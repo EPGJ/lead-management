@@ -38,18 +38,17 @@ export default function SignUp() {
   };
 
 
-  const submit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
       setSubmitting(false);
       registerUser(values);
       signIn(values.username, values.password);
+      alert('Login Successful');
+      navigate('/leads');
     }, 500);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    submit(values, { setSubmitting });
-    navigate('/leads');
-  };
+ 
 
   return (
     <ThemeProvider theme={theme}>
