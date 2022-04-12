@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
-// import { Redirect } from "react-router";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+
+import { ToastContainer } from 'react-toastify';
 import { CssBaseline } from '@material-ui/core';
 
 import Leads from "./pages/leads/Leads";
@@ -13,8 +14,19 @@ import SingUp from "./pages/signUp/SignUp";
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       <CssBaseline />
-      <Nav />
+      <Nav /> 
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SingUp />} />

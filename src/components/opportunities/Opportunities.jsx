@@ -1,12 +1,12 @@
 import { FormControl, Checkbox, FormGroup, FormControlLabel, Grid, FormLabel } from '@mui/material';
 
 import { HelperText } from './style';
-import initialData from '../../utils/initialData';
+import initialState from '../../utils/initialState';
 import { useOpportunities } from '../../hooks/useOpportunities';
 
 const Opportunites = ({ errors, values, touched, setFieldTouched }) => {
 
-  const [checked, setChecked, handleChange] = useOpportunities(initialData.opportunities, values, setFieldTouched);
+  const [checked, setChecked, handleChange] = useOpportunities(initialState.opportunities, values, setFieldTouched);
 
   const hasError = () => {
     const error1 = !!errors.opportunities && touched.opportunities;

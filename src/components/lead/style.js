@@ -6,5 +6,5 @@ export const Container = styled('div')`
   padding: 8px;
   margin-bottom: 8px;
   background-color: ${(props) =>
-    props['data-is-dragging'] ? 'lightgreen' : 'white'};
+    props['data-is-dragging'] ? '#ababab' : 'white'};
 `;

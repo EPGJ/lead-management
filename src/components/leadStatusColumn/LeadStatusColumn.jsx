@@ -4,8 +4,9 @@ import { Grid, Typography } from "@mui/material";
 
 import { Lead } from '../lead/Lead'
 import { LeadList, StyledPaper } from './style';
+import { useEffect } from "react";
 
-export function LeadStatusColumn({ column, leads, isDropDisabled }) {
+export const LeadStatusColumn = ({ title, column, leads, isDropDisabled }) => {
   return (
     <Grid item xs={4}>
       <StyledPaper elevation={2}>
@@ -29,4 +30,4 @@ export function LeadStatusColumn({ column, leads, isDropDisabled }) {
       </StyledPaper>
     </Grid>
   );
-}
+};

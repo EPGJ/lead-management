@@ -18,23 +18,13 @@ import {
 
 import { validationFormRegister } from './validation';
 import { useAuth } from '../../hooks/useAuth';
-
+import { registerUser } from '../../services/signUpService'
 
 export default function SignUp() {
 
   const navigate = useNavigate();
   const theme = createTheme();
   const [user, signIn, signOut] = useAuth();
-
-  const registerUser = (values) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const newUser = {
-      id: users.length + 1,
-      username: values.username,
-      password: values.password,
-    };
-    localStorage.setItem('users', JSON.stringify([...users, newUser]));
-  };
 
 
   const handleSubmit = (values, { setSubmitting }) => {

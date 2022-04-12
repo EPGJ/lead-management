@@ -31,7 +31,7 @@ export default function SignIn() {
     setTimeout(() => {
       setSubmitting(false);
       try {
-        console.log(values);
+        // console.log(values);
         signIn(values.username, values.password);
         navigate('/leads');
         alert('Login Successful');
