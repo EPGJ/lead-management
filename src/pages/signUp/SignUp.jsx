@@ -15,21 +15,12 @@ import {
 } from '@mui/material';
 
 import { validationFormRegister } from './validation';
-import { submit } from '../../services/signUpService'
+import { submit } from '../../services/authService'
 import Image from '../../assets/banner.jpg';
 
 export default function SignUp() {
 
   const navigate = useNavigate();
-
-
-  const handleSubmit = (values, { setSubmitting }) => {
-
-    submit(values, { setSubmitting });
-    navigate('/leads');
-
-  };
-
 
   return (
 
@@ -74,7 +65,7 @@ export default function SignUp() {
             }}
             validate={validationFormRegister}
             onSubmit={(values, { setSubmitting }) =>
-              handleSubmit(values, { setSubmitting })
+              submit(values, { setSubmitting }, navigate)
             }
           >
             {({ submitForm, isSubmitting }) => (

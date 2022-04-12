@@ -32,7 +32,7 @@ export default function Nav() {
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={()=> navigate('/leads')}>
               <img src={Logo} alt="logo" />
-            </Typography>s
+            </Typography>
             <Button color="inherit" onClick={()=> navigate('/signUp')} >Register</Button>
           </Toolbar>
         </AppBar>

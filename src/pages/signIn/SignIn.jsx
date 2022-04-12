@@ -34,7 +34,7 @@ export default function SignIn() {
         navigate('/leads');
         alert('Login Successful');
       } catch (error) {
-        alert('erro');
+        alert('Erro ao efetuar login');
       }
     }, 500);
   };

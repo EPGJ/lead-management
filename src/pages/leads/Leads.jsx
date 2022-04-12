@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Container, Grid, Typography, Box } from '@mui/material';
 import { DragDropContext } from 'react-beautiful-dnd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { LeadStatusColumn } from '../../components/leadStatusColumn/LeadStatusColumn';
 import initialState from '../../utils/initialState';
@@ -34,7 +35,14 @@ const Leads = () => {
         <Grid container spacing={2}>
 
           <Grid item xs={12}>
-            <Typography  component="h1" variant="h5">Leads</Typography>
+            <Typography component="h1" variant="h5">Leads</Typography>
+          </Grid>
+
+          <Grid item xs={8}>
+            <Button variant="outlined" onClick={() => navigate('/signin')}>
+              <ArrowBackIcon />
+              Voltar
+            </Button>
           </Grid>
 
           <Grid item xs={12}>
