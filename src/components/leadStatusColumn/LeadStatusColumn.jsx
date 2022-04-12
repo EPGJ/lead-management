@@ -3,7 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { Grid, Typography,Paper } from "@mui/material";
 
 import { Lead } from '../lead/Lead'
-import { LeadList, StyledPaper } from './style';
+import { LeadList } from './style';
 
 export const LeadStatusColumn = ({ title, id, leads, isDropDisabled }) => {
   return (

@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 const parseOpportunities = (values) => {
     const opportunities = [];
     Object.keys(values).forEach((key) => {
@@ -25,9 +27,13 @@ export const submit = (values, { setSubmitting },navigate) => {
             ];
             window.localStorage.setItem('leads', JSON.stringify(leads));
             navigate('/leads');
-            alert('Sucesso!');
+            toast.success('Lead cadastrado com sucesso!', {
+                theme: "colored"
+              });
         } catch (error) {
-            alert('Erro ao cadastrar: ' + error);
+            toast.error('Erro ao cadastrar lead', {
+                theme: "colored"
+              });
         }
     }, 500);
       

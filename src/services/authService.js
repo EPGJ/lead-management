@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export const signIn = (username, password) => {
 
     const users = JSON.parse(window.localStorage.getItem('users')) || [];
@@ -36,10 +38,14 @@ export const submit = (values, { setSubmitting },navigate) => {
         try {
             registerUser(values);
             signIn(values.username, values.password);
-            alert('Sucesso!');
+            toast.success('Cadastro realizado com sucesso!', {
+                theme: "colored"
+              });
             navigate('/leads');
         } catch (error) {
-            alert('Erro ao cadastrar');
+            toast.error('Erro ao realizar cadastro!', {
+                theme: "colored"
+              });
         }
     }, 500);
       

@@ -19,6 +19,7 @@ import { TextField } from 'formik-mui';
 import validateLoginForm from './validation';
 import { signIn } from '../../services/authService';
 import Image from '../../assets/banner.jpg';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
 
@@ -32,9 +33,13 @@ export default function SignIn() {
       try {
         signIn(values.username, values.password);
         navigate('/leads');
-        alert('Login Successful');
+        toast.success('Login realizado com sucesso!', {
+          theme: "colored"
+        });
       } catch (error) {
-        alert('Erro ao efetuar login');
+        toast.error('Erro ao realizar login', {
+          theme: "colored"
+        });
       }
     }, 500);
   };

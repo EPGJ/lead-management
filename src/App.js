@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 import { ToastContainer } from 'react-toastify';
 import { CssBaseline } from '@material-ui/core';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Leads from "./pages/leads/Leads";
 import AddLead from "./pages/addLead/AddLead"
@@ -15,7 +16,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -25,6 +26,7 @@ function App() {
           pauseOnHover
         />
       <CssBaseline />
+
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SingUp />} />

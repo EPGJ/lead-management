@@ -1,10 +1,6 @@
 import { Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
-export const StyledPaper = styled(Paper)`
-  background-color: #eee;
-`;
-
 export const Container = styled('div')`
   margin: 8px;
   border: 1px solid lightgrey;

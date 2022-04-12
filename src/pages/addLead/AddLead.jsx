@@ -4,7 +4,6 @@ import { Button, Container, Grid, Typography, Box } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { toast } from 'react-toastify';
 
 import Opportunities from '../../components/opportunities/Opportunities';
 import { submit } from '../../services/leadService'
