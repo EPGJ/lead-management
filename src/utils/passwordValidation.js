@@ -1,6 +1,6 @@
 const passwordValidation = (values, errors) => {
     if (
-        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*+-~´`.])(?=.{8,})/.test(
+        !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
             values.password
         ) &&
         values.password

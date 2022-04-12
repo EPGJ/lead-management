@@ -41,13 +41,13 @@ export const useDragAndDrop = (initialState) => {
         }
       }
 
-      handleUpdateColumns(newColumns);
+      updateColumns(newColumns);
 
       setLoading(false);
     }
   }, [leads]);
 
-  const handleUpdateLeads = (status, leadId) => {
+  const updateLeads = (status, leadId) => {
     setLeads((leads) => {
       const index = leads.findIndex((lead) => lead.id === +leadId);
       if (index !== -1) leads[index].status = status;
@@ -57,7 +57,7 @@ export const useDragAndDrop = (initialState) => {
     });
   };
 
-  const handleUpdateColumns = (newColumns) => {
+  const updateColumns = (newColumns) => {
     setColumns((columns) => {
       columns = { ...columns, ...newColumns };
 
@@ -103,7 +103,7 @@ export const useDragAndDrop = (initialState) => {
         leadsIds: newLeadsIds,
       }; 
 
-      handleUpdateColumns({ [newColumn.id]: newColumn });
+      updateColumns({ [newColumn.id]: newColumn });
       return;
     }
 
@@ -121,8 +121,8 @@ export const useDragAndDrop = (initialState) => {
       leadsIds: finishTaskIds,
     };
 
-    handleUpdateColumns({ [newStart.id]: newStart, [newFinish.id]: newFinish });
-    handleUpdateLeads(newFinish.title, draggableId);
+    updateColumns({ [newStart.id]: newStart, [newFinish.id]: newFinish });
+    updateLeads(newFinish.title, draggableId);
   };
 
 

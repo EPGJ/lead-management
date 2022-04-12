@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Container, Grid, Typography, Box, CardHeader } from '@mui/material';
+import { Button, Container, Grid, Typography, Box } from '@mui/material';
 import { DragDropContext } from 'react-beautiful-dnd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
