@@ -15,8 +15,9 @@ import {
 } from '@mui/material';
 
 import { validationFormRegister } from './validation';
-import { submit } from '../../services/authService'
+import { handleRegister } from '../../services/authService'
 import Image from '../../assets/banner.jpg';
+
 
 export default function SignUp() {
 
@@ -65,7 +66,7 @@ export default function SignUp() {
             }}
             validate={validationFormRegister}
             onSubmit={(values, { setSubmitting }) =>
-              submit(values, { setSubmitting }, navigate)
+              handleRegister(values, { setSubmitting }, navigate)
             }
           >
             {({ submitForm, isSubmitting }) => (

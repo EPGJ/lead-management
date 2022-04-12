@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Container, Grid, Typography, Box, CardHeader } from '@mui/material';
@@ -9,6 +10,7 @@ import { LeadStatusColumn } from '../../components/leadStatusColumn/LeadStatusCo
 import initialState from '../../utils/initialState';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
 import Image from '../../assets/logo3.svg';
+import { checkAuthenticated } from '../../utils/checkAuthenticated';
 
 const Leads = () => {
 
@@ -22,6 +24,9 @@ const Leads = () => {
     onDragEnd
   ] = useDragAndDrop(initialState);
 
+  useEffect(() => {
+    checkAuthenticated(navigate);
+  }, [])
 
   return (
     <Container maxWidth="lg">

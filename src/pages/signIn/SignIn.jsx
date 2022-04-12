@@ -8,8 +8,6 @@ import {
   Box,
   Typography,
   Paper,
-  Container,
-  createTheme,
   LinearProgress,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -17,32 +15,13 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 
 import validateLoginForm from './validation';
-import { signIn } from '../../services/authService';
+import { handleLogin } from '../../services/authService';
 import Image from '../../assets/banner.jpg';
-import { toast } from 'react-toastify';
 
 export default function SignIn() {
 
   const navigate = useNavigate();
 
-
-
-  const handleSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      setSubmitting(false);
-      try {
-        signIn(values.username, values.password);
-        navigate('/leads');
-        toast.success('Login realizado com sucesso!', {
-          theme: "colored"
-        });
-      } catch (error) {
-        toast.error('Erro ao realizar login', {
-          theme: "colored"
-        });
-      }
-    }, 500);
-  };
 
   return (
     <>
@@ -85,7 +64,7 @@ export default function SignIn() {
               }}
               validate={validateLoginForm}
               onSubmit={(values, { setSubmitting }) =>
-                handleSubmit(values, { setSubmitting })
+                handleLogin(values, { setSubmitting }, navigate)
               }
             >
               {({ submitForm, isSubmitting }) => (

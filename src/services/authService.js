@@ -14,7 +14,7 @@ export const signIn = (username, password) => {
             return;
         }
     }
-    throw new Error('Invalid username or password');
+    throw new Error('Usuário ou senha inválidos');
 };
 
 export const signOut = () => {
@@ -31,7 +31,7 @@ const registerUser = (values) => {
     localStorage.setItem('users', JSON.stringify([...users, newUser]));
 };
 
-export const submit = (values, { setSubmitting },navigate) => {
+export const handleRegister = (values, { setSubmitting },navigate) => {
     
     setTimeout(() => {
         setSubmitting(false);
@@ -49,4 +49,21 @@ export const submit = (values, { setSubmitting },navigate) => {
         }
     }, 500);
       
+  };
+
+ export const handleLogin = (values, { setSubmitting }, navigate) => {
+    setTimeout(() => {
+      setSubmitting(false);
+      try {
+        signIn(values.username, values.password);
+        navigate('/leads');
+        toast.success('Login realizado com sucesso!', {
+          theme: "colored"
+        });
+      } catch (error) {
+        toast.error('Erro ao realizar login', {
+          theme: "colored"
+        });
+      }
+    }, 500);
   };

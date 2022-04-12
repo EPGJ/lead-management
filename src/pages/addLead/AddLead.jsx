@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Container, Grid, Typography, Box } from '@mui/material';
@@ -11,12 +12,17 @@ import dataValidation from './validation';
 import initialState from '../../utils/initialState';
 import phoneMask from '../../utils/phoneMask';
 import Image from '../../assets/logo3.svg';
+import { checkAuthenticated } from '../../utils/checkAuthenticated';
+
 
 function AddLead() {
 
   const navigate = useNavigate();
   const defaultValues = initialState.leadForm;
 
+  useEffect(() => {
+    checkAuthenticated(navigate);
+  }, [])
 
   return (
     <Container maxWidth="lg">
