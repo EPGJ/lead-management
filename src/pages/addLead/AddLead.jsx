@@ -11,7 +11,7 @@ import { submit } from '../../services/leadService'
 import dataValidation from './validation';
 import initialState from '../../utils/initialState';
 import phoneMask from '../../utils/phoneMask';
-
+import Image from '../../assets/logo3.svg';
 
 function AddLead() {
 
@@ -30,15 +30,27 @@ function AddLead() {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography component="h1" variant="h5">Novo Lead</Typography>
+
+          <Grid container item  justifyContent="space-between">
+
+            <Grid item  xs={3} sm={4}>
+              <img src={Image} alt="logo" />
+            </Grid>
+
+            <Grid item xs={9} sm={8} style={{marginTop: '1rem'}}>
+              <Typography component="h1" variant="h5">Novo Lead</Typography>
+            </Grid>
+
           </Grid>
+
+
           <Grid item xs={12}>
             <Button variant="outlined" onClick={() => navigate('/leads')}>
               <ArrowBackIcon />
               Voltar
             </Button>
           </Grid>
+
           <Grid container item xs={12}>
             <Formik
               initialValues={defaultValues}

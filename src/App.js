@@ -5,7 +5,6 @@ import { CssBaseline } from '@material-ui/core';
 
 import Leads from "./pages/leads/Leads";
 import AddLead from "./pages/addLead/AddLead"
-import Nav from "./components/nav/Nav";
 import SignIn from "./pages/signIn/SignIn";
 import SingUp from "./pages/signUp/SignUp";
 
@@ -26,7 +25,6 @@ function App() {
           pauseOnHover
         />
       <CssBaseline />
-      <Nav />  
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SingUp />} />

@@ -1,19 +1,18 @@
 import { Droppable } from "react-beautiful-dnd";
 
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography,Paper } from "@mui/material";
 
 import { Lead } from '../lead/Lead'
 import { LeadList, StyledPaper } from './style';
-import { useEffect } from "react";
 
-export const LeadStatusColumn = ({ title, column, leads, isDropDisabled }) => {
+export const LeadStatusColumn = ({ title, id, leads, isDropDisabled }) => {
   return (
     <Grid item xs={4}>
-      <StyledPaper elevation={2}>
-        <Typography  component="h1" variant="h5" padding={1}>
-          {column.title}
+      <Paper  style={{ backgroundColor: '#eee', textAlign: 'center' }}>
+        <Typography   variant="h5" padding={1}>
+          {title}
         </Typography>
-        <Droppable droppableId={column.id} isDropDisabled={isDropDisabled}>
+        <Droppable droppableId={id} isDropDisabled={isDropDisabled}>
           {(provided, snapshot) => (
             <LeadList
               ref={provided.innerRef}
@@ -27,7 +26,7 @@ export const LeadStatusColumn = ({ title, column, leads, isDropDisabled }) => {
             </LeadList>
           )}
         </Droppable>
-      </StyledPaper>
+      </Paper>
     </Grid>
   );
 };

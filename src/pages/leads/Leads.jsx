@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Container, Grid, Typography, Box } from '@mui/material';
+import { Button, Container, Grid, Typography, Box, CardHeader } from '@mui/material';
 import { DragDropContext } from 'react-beautiful-dnd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { LeadStatusColumn } from '../../components/leadStatusColumn/LeadStatusColumn';
 import initialState from '../../utils/initialState';
 import { useDragAndDrop } from '../../hooks/useDragAndDrop';
+import Image from '../../assets/logo3.svg';
 
 const Leads = () => {
 
@@ -32,10 +33,15 @@ const Leads = () => {
           alignItems: 'center',
         }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justifyContent="space-between">
 
-          <Grid item xs={12}>
-            <Typography component="h1" variant="h5">Leads</Typography>
+          <Grid container item >
+            <Grid item xs={4}>
+              <img src={Image} alt="logo" />
+            </Grid>
+            <Grid item xs={8} style={{marginTop: '1rem'}}>
+              <Typography component="h1" variant="h5">Painel de Leads</Typography>
+            </Grid>
           </Grid>
 
           <Grid item xs={8}>
@@ -67,7 +73,8 @@ const Leads = () => {
                     return (
                       <LeadStatusColumn
                         key={column.id}
-                        column={column}
+                        title={column.title}
+                        id={column.id}
                         leads={auxLeads}
                         isDropDisabled={isDropDisabled}
                       />
