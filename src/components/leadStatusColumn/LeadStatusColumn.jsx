@@ -10,7 +10,7 @@ export const LeadStatusColumn = ({ title, column, leads, isDropDisabled }) => {
   return (
     <Grid item xs={4}>
       <StyledPaper elevation={2}>
-        <Typography variant="h5" padding={1}>
+        <Typography  component="h1" variant="h5" padding={1}>
           {column.title}
         </Typography>
         <Droppable droppableId={column.id} isDropDisabled={isDropDisabled}>

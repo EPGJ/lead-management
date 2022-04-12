@@ -26,7 +26,7 @@ function App() {
           pauseOnHover
         />
       <CssBaseline />
-      <Nav /> 
+      {/* <Nav />  */}
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SingUp />} />

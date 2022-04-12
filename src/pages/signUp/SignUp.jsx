@@ -10,51 +10,62 @@ import {
   LinearProgress,
   Grid,
   Box,
+  Paper,
   Typography,
-  Container,
-  createTheme,
-  ThemeProvider,
 } from '@mui/material';
 
 import { validationFormRegister } from './validation';
-import { useAuth } from '../../hooks/useAuth';
-import { registerUser } from '../../services/signUpService'
+import { submit } from '../../services/signUpService'
+import Image from '../../assets/banner.jpg';
 
 export default function SignUp() {
 
   const navigate = useNavigate();
-  const theme = createTheme();
-  const [user, signIn, signOut] = useAuth();
 
 
   const handleSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      setSubmitting(false);
-      registerUser(values);
-      signIn(values.username, values.password);
-      alert('Login Successful');
-      navigate('/leads');
-    }, 500);
+
+    submit(values, { setSubmitting });
+    navigate('/leads');
+
   };
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+
+    <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: `url(${Image})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            marginTop: 8,
+            my: 8,
+            mx: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
+
           <Avatar sx={{ m: 1, bgcolor: '' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Cadastre-se
           </Typography>
+
           <Formik
             initialValues={{
               username: '',
@@ -75,7 +86,8 @@ export default function SignUp() {
                   spacing={2}
                   item
                 >
-                  <Grid item xs={12}>
+
+                  <Grid item xs={10}>
                     <label htmlFor='name'>Usuário *</label>
                     <Field
                       component={TextField}
@@ -87,7 +99,8 @@ export default function SignUp() {
                       required
                     />
                   </Grid>
-                  <Grid item xs={12}>
+
+                  <Grid item xs={10}>
                     <label htmlFor='password'>Password *</label>
                     <Field
                       component={TextField}
@@ -98,7 +111,8 @@ export default function SignUp() {
                       required
                     />
                   </Grid>
-                  <Grid item xs={12}>
+
+                  <Grid item xs={10}>
                     <label htmlFor='passwordConfirm'>Confirmação Password *</label>
                     <Field
                       component={TextField}
@@ -110,7 +124,8 @@ export default function SignUp() {
                     />
                   </Grid>
                   {isSubmitting && <LinearProgress />}
-                  <Grid item xs={12}>
+
+                  <Grid item xs={10}>
                     <Button
                       type="submit"
                       variant="contained"
@@ -121,20 +136,21 @@ export default function SignUp() {
                     >
                       Registrar
                     </Button>
+
+                    <Grid item>
+                      <Link href="#" variant="body2" onClick={() => navigate('/signIn')} >
+                        {"Já possui uma conta? faça login"}
+                      </Link>
+                    </Grid>
+
                   </Grid>
                 </Grid>
               </Form>
             )}
           </Formik>
-          <Grid item>
-            <Link href="#" variant="body2" onClick={() => navigate('/signIn')} >
-              {"Já possui uma conta? faça login"}
-            </Link>
-          </Grid>
-
 
         </Box>
-      </Container>
-    </ThemeProvider>
+      </Grid>
+    </Grid>
   );
 }

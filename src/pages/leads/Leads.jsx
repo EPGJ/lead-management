@@ -34,7 +34,7 @@ const Leads = () => {
         <Grid container spacing={2}>
 
           <Grid item xs={12}>
-            <Typography variant="h4">Leads</Typography>
+            <Typography  component="h1" variant="h5">Leads</Typography>
           </Grid>
 
           <Grid item xs={12}>

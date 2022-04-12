@@ -5,10 +5,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import Logo from '../../assets/logo3.svg';
 
 const darkTheme = createTheme({
   palette: {
@@ -32,8 +31,8 @@ export default function Nav() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={()=> navigate('/leads')}>
-              Elogroup
-            </Typography>
+              <img src={Logo} alt="logo" />
+            </Typography>s
             <Button color="inherit" onClick={()=> navigate('/signUp')} >Register</Button>
           </Toolbar>
         </AppBar>
