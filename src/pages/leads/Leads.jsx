@@ -33,6 +33,7 @@ const Leads = () => {
       <Box
         sx={{
           marginTop: 8,
+          marginBottom: 3,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -40,14 +41,25 @@ const Leads = () => {
       >
         <Grid container spacing={2} justifyContent="space-between">
 
-          <Grid container item >
-            <Grid item xs={4}>
-              <img src={Image} alt="logo" />
-            </Grid>
-            <Grid item xs={8} style={{marginTop: '1rem'}}>
-              <Typography component="h1" variant="h5">Painel de Leads</Typography>
-            </Grid>
+
+          <Grid container item  justifyContent="space-between">
+              <Grid container  xs={12} >
+
+                <Grid container  item xs={12} sm={12} md={4} >
+                  <Grid item xs={12}>
+                    <img src={Image} alt="logo" />
+                  </Grid>
+                </Grid>
+
+                <Grid container alignItems="left" justifyContent="left" item xs={4} sm={8} md={5} >
+                  <Grid item  xs={12} style={{ marginTop: '1rem' }}>
+                    <Typography component="h1" variant="h5">Painel de Leads</Typography>
+                  </Grid>
+                </Grid>
+
+              </Grid>
           </Grid>
+
 
           <Grid item xs={8}>
             <Button variant="outlined" onClick={() => navigate('/signin')}>

@@ -29,6 +29,7 @@ function AddLead() {
       <Box
         sx={{
           marginTop: 8,
+          marginBottom: 3,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -37,15 +38,21 @@ function AddLead() {
         <Grid container spacing={2}>
 
           <Grid container item  justifyContent="space-between">
+              <Grid container  xs={12} >
 
-            <Grid item  xs={3} sm={4}>
-              <img src={Image} alt="logo" />
-            </Grid>
+                <Grid container  item xs={12} sm={12} md={4} >
+                  <Grid item xs={12}>
+                    <img src={Image} alt="logo" />
+                  </Grid>
+                </Grid>
 
-            <Grid item xs={9} sm={8} style={{marginTop: '1rem'}}>
-              <Typography component="h1" variant="h5">Novo Lead</Typography>
-            </Grid>
+                <Grid container alignItems="left" justifyContent="left" item xs={4} sm={8} md={5} >
+                  <Grid item  xs={12} style={{ marginTop: '1rem' }}>
+                    <Typography component="h1" variant="h5">Novo Lead</Typography>
+                  </Grid>
+                </Grid>
 
+              </Grid>
           </Grid>
 
 
